@@ -8,14 +8,14 @@ multi-platform publishing — directly from your AI coding client.
 > LinkedIn, and X, then publishes them. It is **not** a video generator or editor.
 
 This package is an [MCP](https://modelcontextprotocol.io) connector that exposes the
-VidSeeds.ai workflow (**148 tools**, all prefixed `vidseeds_`) as a plugin for
+VidSeeds.ai workflow (**149 tools**, all prefixed `vidseeds_`) as a plugin for
 **Claude Code** and **Codex**. The connector ships no credentials — it tells your client
 how to call the hosted endpoint `https://vidseeds.ai/api/mcp` with a token you supply.
 
 - **Endpoint:** `https://vidseeds.ai/api/mcp` (MCP Streamable HTTP)
 - **Auth (this plugin):** Personal Access Token (`Authorization: Bearer vs_pat_…`)
 - **Auth (Claude.ai / Desktop):** the same endpoint also supports **OAuth 2.0** (PKCE + Dynamic Client Registration) — add it as a custom connector, no token needed. See the in-app guide below.
-- **Server:** `vidseeds` v1.6.1
+- **Server:** `vidseeds` v1.7.0
 
 > **More clients & a copy-paste walkthrough:** the in-app setup guide at
 > <https://vidseeds.ai/settings/developer-tokens> covers **Claude.ai & Desktop (OAuth)**,
@@ -148,9 +148,27 @@ Cursor rejects dotted names like `vidseeds.generate_thumbnail`.
 
 ---
 
-## 5. What the connector can do
+## 5. Agent skills (workflow guides)
 
-148 tools spanning the full VidSeeds.ai creator workflow:
+This plugin ships skills under [`skills/`](skills/) so agents use MCP efficiently without guessing tool chains. Read **`vidseeds-efficiency`** before expensive workflows.
+
+| Skill                  | When to use                              |
+| ---------------------- | ---------------------------------------- |
+| `vidseeds-setup`       | PAT/OAuth, trial, first connect          |
+| `vidseeds-efficiency`  | Seeds, daily MCP quota, async polling    |
+| `vidseeds-thumbnails`  | Generate, edit, studio, apply to project |
+| `vidseeds-projects`    | YouTube → project → metadata             |
+| `vidseeds-analytics`   | Channel intel, autopsy, discovery        |
+| `vidseeds-local-video` | Local files, ffmpeg recipes, trim        |
+| `vidseeds-publishing`  | Connections, preflight, publish          |
+
+Per-tool parameters and seed costs come from the hosted server's `tools/list` descriptions. Skills teach **composition**, not a full catalog. Maintainer sync: [`MAINTAINERS.md`](MAINTAINERS.md).
+
+---
+
+## 6. What the connector can do
+
+149 tools spanning the full VidSeeds.ai creator workflow:
 
 | Area                     | Examples                                                                                                                    |
 | ------------------------ | --------------------------------------------------------------------------------------------------------------------------- |
@@ -214,7 +232,7 @@ or abuse in real money.
 
 ## Versioning
 
-The plugin version tracks the VidSeeds.ai MCP server version (currently **1.6.1**).
+The plugin version tracks the VidSeeds.ai MCP connector package (currently **1.7.0**).
 The wildcard PAT scope reaches new tools automatically as the server grows, so existing
 tokens keep working without being recreated.
 
