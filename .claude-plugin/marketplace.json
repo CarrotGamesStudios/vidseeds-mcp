@@ -1,0 +1,38 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "vidseeds",
+  "description": "Official VidSeeds.ai plugin marketplace — the VidSeeds.ai video SEO & metadata connector for Claude Code.",
+  "owner": {
+    "name": "VidSeeds.ai",
+    "url": "https://vidseeds.ai"
+  },
+  "plugins": [
+    {
+      "name": "vidseeds",
+      "source": "./",
+      "description": "VidSeeds.ai connector — pre-upload video SEO/metadata optimization + multi-platform publishing (139 tools). Requires a free Personal Access Token from https://vidseeds.ai/settings/developer-tokens.",
+      "version": "1.6.0",
+      "author": {
+        "name": "VidSeeds.ai",
+        "url": "https://vidseeds.ai"
+      },
+      "homepage": "https://vidseeds.ai",
+      "repository": "https://github.com/CarrotGamesStudios/vidseeds-mcp",
+      "license": "MIT",
+      "category": "productivity",
+      "keywords": [
+        "vidseeds",
+        "youtube",
+        "video-seo",
+        "metadata",
+        "thumbnails",
+        "youtube-analytics",
+        "keyword-research",
+        "mcp",
+        "publishing",
+        "captions"
+      ],
+      "strict": false
+    }
+  ]
+}
