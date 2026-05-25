@@ -23,9 +23,10 @@ how to call the hosted endpoint `https://vidseeds.ai/api/mcp` with a token you s
 > snippets for each.
 
 > **💳 Paid connector — 14-day free trial.** The MCP server is available to paid
-> VidSeeds.ai subscribers. New accounts get a **14-day free trial that starts on the
-> first MCP connection**; once it ends, an active subscription is required to keep using
-> the connector. Manage plans at <https://vidseeds.ai/pricing>.
+> VidSeeds.ai subscribers. Every account gets a **14-day free trial that starts on the
+> first MCP connection** — including older accounts that have never connected before;
+> once it ends, an active subscription is required to keep using the connector. Manage
+> plans at <https://vidseeds.ai/pricing>.
 
 ---
 

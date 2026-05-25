@@ -22,10 +22,10 @@ For this plugin (Claude Code / Codex), the `vidseeds` MCP server authenticates w
 > there. See <https://vidseeds.ai/settings/developer-tokens>.
 
 > **Paid connector — 14-day free trial.** The MCP server requires a paid VidSeeds.ai
-> subscription. New accounts get a **14-day free trial that starts on the first MCP
-> connection**; after it ends, an active subscription is required (a `402 /
-> SUBSCRIPTION_REQUIRED` response means the trial has ended — subscribe at
-> <https://vidseeds.ai/pricing>).
+> subscription. Every account gets a **14-day free trial that starts on the first MCP
+> connection** (including older accounts that have never connected); after it ends, an
+> active subscription is required (a `402 / SUBSCRIPTION_REQUIRED` response means the
+> trial has ended — subscribe at <https://vidseeds.ai/pricing>).
 
 Note: creating a token is free, but **connecting requires a paid subscription or an active
 trial**. Separately, individual tools spend **seeds** from the account's balance
