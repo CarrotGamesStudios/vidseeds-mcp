@@ -8,13 +8,24 @@ multi-platform publishing — directly from your AI coding client.
 > LinkedIn, and X, then publishes them. It is **not** a video generator or editor.
 
 This package is an [MCP](https://modelcontextprotocol.io) connector that exposes the
-VidSeeds.ai workflow (**139 tools**, all prefixed `vidseeds.`) as a plugin for
+VidSeeds.ai workflow (**148 tools**, all prefixed `vidseeds.`) as a plugin for
 **Claude Code** and **Codex**. The connector ships no credentials — it tells your client
 how to call the hosted endpoint `https://vidseeds.ai/api/mcp` with a token you supply.
 
 - **Endpoint:** `https://vidseeds.ai/api/mcp` (MCP Streamable HTTP)
-- **Auth:** Personal Access Token only (`Authorization: Bearer vs_pat_…`)
-- **Server:** `vidseeds` v1.6.0
+- **Auth (this plugin):** Personal Access Token (`Authorization: Bearer vs_pat_…`)
+- **Auth (Claude.ai / Desktop):** the same endpoint also supports **OAuth 2.0** (PKCE + Dynamic Client Registration) — add it as a custom connector, no token needed. See the in-app guide below.
+- **Server:** `vidseeds` v1.6.1
+
+> **More clients & a copy-paste walkthrough:** the in-app setup guide at
+> <https://vidseeds.ai/settings/developer-tokens> covers **Claude.ai & Desktop (OAuth)**,
+> **Claude Code**, **Cursor**, **Codex**, and any other MCP client — with ready-to-copy
+> snippets for each.
+
+> **💳 Paid connector — 14-day free trial.** The MCP server is available to paid
+> VidSeeds.ai subscribers. New accounts get a **14-day free trial that starts on the
+> first MCP connection**; once it ends, an active subscription is required to keep using
+> the connector. Manage plans at <https://vidseeds.ai/pricing>.
 
 ---
 
@@ -30,8 +41,10 @@ how to call the hosted endpoint `https://vidseeds.ai/api/mcp` with a token you s
 > (`VIDSEEDS_PAT`); your client injects the value from the environment at connect time.
 > A leaked PAT grants full non-admin access to your account — treat it like a password.
 
-> ℹ️ Creating a token is free. **Tool access** (auth vs entitlement are separate) may
-> depend on your VidSeeds.ai plan or trial — the server enforces entitlements per call.
+> ℹ️ Creating a token is free, but **connecting requires a paid subscription or an active
+> 14-day trial** (see above). Beyond access, individual tools spend **seeds** from your
+> balance (read-only tools are free) — connection access and per-tool seed cost are
+> separate, both enforced server-side per call.
 
 ---
 
@@ -109,9 +122,33 @@ Codex marketplace at this repo and install `vidseeds` via `codex` → `/plugins`
 
 ---
 
-## 4. What the connector can do
+## 4. Install in Cursor
 
-139 tools spanning the full VidSeeds.ai creator workflow:
+Add the server to `~/.cursor/mcp.json` (global) or `.cursor/mcp.json` (per project).
+Cursor resolves `${env:…}` in `url` / `headers`, so reference the token by name rather
+than pasting the secret:
+
+```json
+{
+  "mcpServers": {
+    "vidseeds": {
+      "url": "https://vidseeds.ai/api/mcp",
+      "headers": {
+        "Authorization": "Bearer ${env:VIDSEEDS_PAT}"
+      }
+    }
+  }
+}
+```
+
+Set `VIDSEEDS_PAT` in your environment, then enable the `vidseeds` server in
+**Cursor Settings → MCP**.
+
+---
+
+## 5. What the connector can do
+
+148 tools spanning the full VidSeeds.ai creator workflow:
 
 | Area                     | Examples                                                                                                                    |
 | ------------------------ | --------------------------------------------------------------------------------------------------------------------------- |
@@ -143,7 +180,7 @@ Codex marketplace at this repo and install `vidseeds` via `codex` → `/plugins`
 
 ## Versioning
 
-The plugin version tracks the VidSeeds.ai MCP server version (currently **1.6.0**).
+The plugin version tracks the VidSeeds.ai MCP server version (currently **1.6.1**).
 The wildcard PAT scope reaches new tools automatically as the server grows, so existing
 tokens keep working without being recreated.
 

@@ -1,7 +1,7 @@
 {
   "name": "vidseeds",
-  "version": "1.6.0",
-  "description": "VidSeeds.ai connector — pre-upload video SEO/metadata optimization + multi-platform publishing (139 tools). Requires a free Personal Access Token from https://vidseeds.ai/settings/developer-tokens.",
+  "version": "1.6.1",
+  "description": "VidSeeds.ai connector — pre-upload video SEO/metadata optimization + multi-platform publishing (148 tools). Paid connector with a 14-day free trial. Requires a free Personal Access Token from https://vidseeds.ai/settings/developer-tokens.",
   "skills": "./skills/",
   "mcpServers": "./codex.mcp.json"
 }

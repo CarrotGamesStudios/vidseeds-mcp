@@ -13,13 +13,24 @@ editor. This connector exposes that workflow as MCP tools (all prefixed `vidseed
 
 ## The connector needs a Personal Access Token (PAT)
 
-The `vidseeds` MCP server authenticates with a **Personal Access Token only** — there is
-no OAuth flow and cookie sessions are rejected. If a tool call returns
+For this plugin (Claude Code / Codex), the `vidseeds` MCP server authenticates with a
+**Personal Access Token** — cookie sessions are rejected. If a tool call returns
 `401 / AUTH_REQUIRED` ("Bearer token required"), the token is missing or unset.
 
-Note: creating a token is free, but **authentication and entitlement are separate** — a
-valid token connects the server, while access to individual tools may depend on the
-account's VidSeeds.ai plan or trial (enforced server-side per call).
+> The same hosted endpoint also supports **OAuth 2.0** (PKCE + Dynamic Client Registration)
+> when added as a custom connector in **Claude.ai** or **Claude Desktop** — no token needed
+> there. See <https://vidseeds.ai/settings/developer-tokens>.
+
+> **Paid connector — 14-day free trial.** The MCP server requires a paid VidSeeds.ai
+> subscription. New accounts get a **14-day free trial that starts on the first MCP
+> connection**; after it ends, an active subscription is required (a `402 /
+> SUBSCRIPTION_REQUIRED` response means the trial has ended — subscribe at
+> <https://vidseeds.ai/pricing>).
+
+Note: creating a token is free, but **connecting requires a paid subscription or an active
+trial**. Separately, individual tools spend **seeds** from the account's balance
+(read-only tools are free) — connection access and per-tool seed cost are both enforced
+server-side per call.
 
 ### One-time setup
 
@@ -52,7 +63,7 @@ export VIDSEEDS_PAT="vs_pat_your_token_here"
 
 ## What you can do once connected
 
-The connector surfaces VidSeeds.ai's full creator workflow (139 tools). Highlights:
+The connector surfaces VidSeeds.ai's full creator workflow (148 tools). Highlights:
 
 - **Metadata optimization** — generate/regenerate optimized titles, descriptions, tags,
   and chapters per platform; optimization history.
