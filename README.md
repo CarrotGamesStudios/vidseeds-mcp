@@ -8,7 +8,7 @@ multi-platform publishing — directly from your AI coding client.
 > LinkedIn, and X, then publishes them. It is **not** a video generator or editor.
 
 This package is an [MCP](https://modelcontextprotocol.io) connector that exposes the
-VidSeeds.ai workflow (**148 tools**, all prefixed `vidseeds.`) as a plugin for
+VidSeeds.ai workflow (**148 tools**, all prefixed `vidseeds_`) as a plugin for
 **Claude Code** and **Codex**. The connector ships no credentials — it tells your client
 how to call the hosted endpoint `https://vidseeds.ai/api/mcp` with a token you supply.
 
@@ -143,7 +143,8 @@ than pasting the secret:
 ```
 
 Set `VIDSEEDS_PAT` in your environment, then enable the `vidseeds` server in
-**Cursor Settings → MCP**.
+**Cursor Settings → MCP**. Tool names use the `vidseeds_` prefix (underscore, not dot) —
+Cursor rejects dotted names like `vidseeds.generate_thumbnail`.
 
 ---
 
@@ -166,7 +167,39 @@ Set `VIDSEEDS_PAT` in your environment, then enable the `vidseeds` server in
 
 > **Seeds:** some tools (thumbnail generation, AI intelligence, translation, …) spend
 > seeds from your VidSeeds.ai balance. Read-only tools are free. Every tool's description
-> states its cost; check `vidseeds.get_seed_balance` if unsure.
+> states its cost; check `vidseeds_get_seed_balance` if unsure.
+
+---
+
+## Platform usage quotas (MCP daily call quotas)
+
+Beyond per-tool seed costs, **every** MCP tool call — read or write — counts toward a
+generous **daily platform-usage quota** that refills continuously throughout the day.
+This keeps real production workloads (daily shorts, adjustments, polling, agent-driven
+investigations) comfortable on every plan, while pricing sustained high-volume scraping
+or abuse in real money.
+
+| Plan    | Included calls / day | Bucket cap |
+| ------- | -------------------- | ---------- |
+| Sprout  | 1,000                | 2,000      |
+| Growth  | 3,000                | 6,000      |
+| Harvest | 8,000                | 16,000     |
+| Agency  | 20,000               | 40,000     |
+| Trial   | 1,000                | 1,000      |
+
+- **Continuous refill, not a midnight reset.** Your bucket refills at the per-plan rate
+  (e.g. Sprout = 1,000/day), accumulating up to the cap so a quiet day carries a
+  reasonable burst into the next.
+- **Overage:** once the bucket is empty, each additional tool call costs **1 seed**
+  (`MCP_OVERAGE_SEED_COST`), on top of any per-tool seed cost. The bucket keeps refilling,
+  so you stop paying overage as soon as it tops up again.
+- **Balance and cost reads are free and exempt** — `vidseeds_get_seed_balance` and
+  `vidseeds_get_seed_balance_and_subscription` never consume a call or charge overage.
+- **Check your remaining included calls** any time with `vidseeds_get_seed_balance` (it
+  returns your daily refill, bucket cap, available included calls, and the overage rate).
+
+> If a call is over quota and your balance can't cover the 1-seed overage, the tool
+> returns a clear `MCP_QUOTA_EXCEEDED` error with a top-up link — no surprise charges.
 
 ---
 
