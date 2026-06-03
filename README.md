@@ -7,9 +7,14 @@ multi-platform publishing — directly from your AI coding client.
 > descriptions, tags, thumbnails, and chapters for YouTube, TikTok, Instagram, Facebook,
 > LinkedIn, and X, then publishes them. It is **not** a video generator or editor.
 
+This package is an [MCP](https://modelcontextprotocol.io) connector that exposes the
+VidSeeds.ai workflow (**178 tools** post-audit, includes `vidseeds_suggest_titles` for light titles, all prefixed `vidseeds_`) as a plugin for
+**Claude Code** and **Codex**. The connector ships no credentials — it tells your client
+how to call the hosted endpoint `https://vidseeds.ai/api/mcp` with a token you supply.
+
 This repo is the public marketplace/catalog source for the hosted
 [MCP](https://modelcontextprotocol.io) connector that exposes the VidSeeds.ai workflow
-(**177 tools**, all prefixed `vidseeds_`). It ships the machine-readable metadata that
+(**178 tools**, all prefixed `vidseeds_`). It ships the machine-readable metadata that
 different clients expect:
 
 | Client / catalog                              | What this repo provides                                                                                      |
@@ -27,7 +32,7 @@ with a token you supply.
 - **Auth (this plugin):** Personal Access Token (`Authorization: Bearer vs_pat_…`)
 - **Auth (Claude.ai / Desktop):** the same endpoint also supports **OAuth 2.0** (PKCE + Dynamic Client Registration) — add it as a custom connector, no token needed. See the in-app guide below.
 - **ChatGPT App:** a dedicated endpoint `https://vidseeds.ai/api/mcp/chatgpt` powers the **OpenAI ChatGPT App** (Apps SDK) with rendered result widgets. Local-only tools (ffmpeg/ffprobe recipes, precision-trim, local-audio transcription) are hidden there since ChatGPT has no local shell — use this Claude Code / Codex plugin for those. ChatGPT distribution is through the ChatGPT Apps submission/directory flow, not by adding this Git repo as a custom marketplace.
-- **Server:** `vidseeds` v1.6.1
+- **Server:** `vidseeds` v1.8.0
 
 > **More clients & a copy-paste walkthrough:** the in-app setup guide at
 > <https://vidseeds.ai/settings/mcp-settings> covers **Claude.ai & Desktop (OAuth)**,
@@ -212,7 +217,7 @@ Per-tool parameters and seed costs come from the hosted server's `tools/list` de
 
 ## 8. What the connector can do
 
-177 tools spanning the full VidSeeds.ai creator workflow:
+178 tools (post 2026-06-02 seed audit + light titles tool) spanning the full VidSeeds.ai creator workflow:
 
 | Area                     | Examples                                                                                                                    |
 | ------------------------ | --------------------------------------------------------------------------------------------------------------------------- |
@@ -276,7 +281,7 @@ or abuse in real money.
 
 ## Versioning
 
-The plugin version tracks the VidSeeds.ai MCP connector package (currently **1.7.0**).
+The plugin version tracks the VidSeeds.ai MCP connector package (currently **1.8.0**).
 The wildcard PAT scope reaches new tools automatically as the server grows, so existing
 tokens keep working without being recreated.
 

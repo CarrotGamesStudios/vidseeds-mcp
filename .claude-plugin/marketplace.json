@@ -10,8 +10,8 @@
     {
       "name": "vidseeds",
       "source": "./",
-      "description": "VidSeeds.ai connector — pre-upload video SEO/metadata optimization + multi-platform publishing (177 tools). Workflow skills for efficient MCP use. Paid connector with a 14-day free trial (starts on first connection). Auth via a free Personal Access Token from https://vidseeds.ai/settings/mcp-settings (or OAuth 2.0 for Claude.ai / Desktop custom connectors).",
-      "version": "1.7.0",
+      "description": "VidSeeds.ai connector — pre-upload video SEO/metadata optimization + multi-platform publishing (178 tools, light titles + focus). Workflow skills for efficient MCP use. Paid connector with a 14-day free trial (starts on first connection). Auth via a free Personal Access Token from https://vidseeds.ai/settings/mcp-settings (or OAuth 2.0 for Claude.ai / Desktop custom connectors).",
+      "version": "1.8.0",
       "author": {
         "name": "VidSeeds.ai",
         "url": "https://vidseeds.ai"

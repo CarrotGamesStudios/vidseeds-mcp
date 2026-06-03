@@ -29,6 +29,8 @@ Re-runs optimized titles/descriptions/tags per platform from the stored transcri
 | Production   | `vidseeds_regenerate_project_metadata_async`   | Returns `jobId` immediately                     |
 | Poll         | `vidseeds_get_regenerate_project_metadata_job` | Same result shape as sync when done             |
 
+Pass `focus: "titles"` (with regenerate) to use the lightweight titles-only generator (still 1 seed, but far less AI work than full variants).
+
 **Voice:** If the user has multiple YouTube channels, pass `channelId` (`UC…`). With one connection, omit for auto-resolve. `voiceBlendRatio` optional (tool default documented in `tools/list`).
 
 Reuse the same `requestId` on transport retries to avoid double seed charges when the tool allows it.
@@ -37,6 +39,11 @@ Reuse the same `requestId` on transport retries to avoid double seed charges whe
 
 - `vidseeds_optimize_marketing_metadata` / `vidseeds_optimize_marketing_metadata_async` — needs transcript (e.g. from `vidseeds_transcribe_audio` or YouTube transcript tools).
 - Poll: `vidseeds_get_optimize_marketing_metadata_job`.
+- Pass `focus: "titles"` for title-only (light generator, 1 seed).
+
+## Suggest titles only (light 1-seed path for "new titles" requests)
+
+- `vidseeds_suggest_titles` — dedicated tool for title suggestions only. 1 seed. Accepts `projectId` (loads transcript/meaning) or direct `transcript`. Much lower AI cost than full optimize/regenerate. Use this (or regenerate+focus=titles) instead of create_new when user asks for title options. Idempotent with key.
 
 ## Translate project metadata
 
