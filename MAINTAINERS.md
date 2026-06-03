@@ -6,26 +6,27 @@ This directory (`plugins/vidseeds-mcp/`) is the **source of truth** for the publ
 
 Any change that affects external MCP users:
 
-| Area                     | Paths (private monorepo)                                                 |
-| ------------------------ | ------------------------------------------------------------------------ |
-| MCP tools                | `lib/mcp/tools/**`                                                       |
-| MCP auth / trial / quota | `lib/mcp/auth.ts`, `lib/mcp/entitlement.ts`, `lib/mcp/quota-tracking.ts` |
-| Local stdio MCP          | `scripts/mcp-local/**`                                                   |
-| Connector version        | `.claude-plugin/plugin.json`, `.codex-plugin/plugin.json`, `README.md`   |
+| Area                     | Paths (private monorepo)                                                              |
+| ------------------------ | ------------------------------------------------------------------------------------- |
+| MCP tools                | `lib/mcp/tools/**`                                                                    |
+| MCP auth / trial / quota | `lib/mcp/auth.ts`, `lib/mcp/entitlement.ts`, `lib/mcp/quota-tracking.ts`              |
+| Local stdio MCP          | `scripts/mcp-local/**`                                                                |
+| Connector version        | `.claude-plugin/plugin.json`, `.codex-plugin/plugin.json`, `server.json`, `README.md` |
 
 ## PR checklist
 
 1. Update affected skills under [`skills/`](skills/) (workflows, tool names, quotas, errors).
 2. Bump plugin `version` in `.claude-plugin/plugin.json` and `.codex-plugin/plugin.json` when shipping a connector release.
 3. Align **non-admin tool count** in `README.md` and plugin manifests with `bun run check:mcp-plugin-skills` (admin tools are omitted from public docs).
-4. Run from monorepo root:
+4. Keep root `server.json` aligned with the hosted endpoint, auth header, repository, and connector version; republish it with `mcp-publisher` when the public registry entry needs an update.
+5. Run from monorepo root:
    ```bash
    bun run check:mcp-plugin-skills
    claude plugin validate --strict plugins/vidseeds-mcp/.claude-plugin/plugin.json
    claude plugin validate --strict plugins/vidseeds-mcp/.claude-plugin/marketplace.json
    bunx prettier --check "plugins/vidseeds-mcp/**/*.{json,md}"
    ```
-5. On release: rsync this directory to the public repo and push (authorized maintainers only).
+6. On release: rsync this directory to the public repo and push (authorized maintainers only).
 
 ## Skills content boundary
 

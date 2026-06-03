@@ -1,0 +1,27 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.CarrotGamesStudios/vidseeds-mcp",
+  "title": "VidSeeds.ai",
+  "description": "Pre-upload video SEO, metadata, thumbnails, analytics, and publishing for creators.",
+  "version": "1.6.1",
+  "websiteUrl": "https://vidseeds.ai",
+  "repository": {
+    "url": "https://github.com/CarrotGamesStudios/vidseeds-mcp",
+    "source": "github",
+    "id": "1248735103"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://vidseeds.ai/api/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Bearer token using a VidSeeds.ai Personal Access Token, for example: Bearer vs_pat_your_token_here.",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
