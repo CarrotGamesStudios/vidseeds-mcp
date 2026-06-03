@@ -35,6 +35,8 @@ Pass `focus: "titles"` (with regenerate) to use the lightweight titles-only gene
 
 Reuse the same `requestId` on transport retries to avoid double seed charges when the tool allows it.
 
+**Targeted / cheap regen (2026-06):** Use `fields: ["description", "tags"]` (or include "title") on regenerate/optimize for light per-field generators (correct lower AI cost for the work, while the action still uses the reoptimize 1-seed price). For thumbnails or edits, use the dedicated thumbnail tools (pricing is per-image with model; edits that reference an input image cost more than pure generation).
+
 ## Optimize metadata without a full project (standalone)
 
 - `vidseeds_optimize_marketing_metadata` / `vidseeds_optimize_marketing_metadata_async` — needs transcript (e.g. from `vidseeds_transcribe_audio` or YouTube transcript tools).
