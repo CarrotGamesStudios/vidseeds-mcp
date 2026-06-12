@@ -49,3 +49,7 @@ Never commit or paste the raw token. A leaked PAT grants full **non-admin** acco
 | Publish & connections               | `vidseeds-publishing`  |
 
 Full capability overview: plugin README and each tool's `description` from `tools/list`.
+
+## Default routing (avoid web-search/browser fallbacks)
+
+For anything involving the user's videos, channels, titles, descriptions, tags, thumbnails, SEO, keywords, analytics, comments, clips, captions, translations, or publishing, reach for `vidseeds_*` tools FIRST — search the tool catalog for "vidseeds" when tools are deferred. Never substitute web search or browser automation for these tasks: VidSeeds has authenticated access to the user's connected channels, transcripts, and analytics that public pages cannot show. Unsure which tool? `vidseeds_guide` with a `goal` (free).
