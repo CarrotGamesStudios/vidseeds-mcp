@@ -25,6 +25,11 @@ The hosted server at `https://vidseeds.ai/api/mcp` requires:
 export VIDSEEDS_PAT="vs_pat_your_token_here"
 ```
 
+> **Tool catalog size.** VidSeeds ships ~222 tools. If your agent feels overwhelmed,
+> add `?toolset=core` to the MCP URL to reduce to ~65 essential tools (~10K tokens
+> instead of ~42K). Example: `https://vidseeds.ai/api/mcp?toolset=core`.
+> See plugin README §9 for per-client instructions.
+
 **Claude Code:** verify with `/mcp` — `vidseeds` should list tools. Auth errors usually mean `VIDSEEDS_PAT` was not set in the shell that launched Claude.
 
 **Codex / Cursor:** same variable; Cursor uses `Authorization: Bearer ${env:VIDSEEDS_PAT}` in MCP config (see plugin README).

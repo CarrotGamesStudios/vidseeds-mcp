@@ -235,7 +235,59 @@ Per-tool parameters and seed costs come from the hosted server's `tools/list` de
 
 ---
 
-## 9. Make your AI default to VidSeeds tools
+## 9. Tool catalog size management
+
+**222 tools is a lot.** When VidSeeds connects to your MCP client, the full tool
+catalog (~42K tokens) loads into the agent's context. If your agent feels slow or
+overwhelmed, you can switch to a **leaner toolset**:
+
+### 9a. Use `?toolset=core` on the MCP URL
+
+Add `?toolset=core` to reduce the registered tools from ~222 to ~65, cutting
+context cost to ~10K tokens — without losing any essential workflow:
+
+**Claude Code**:
+```bash
+claude mcp add --transport http vidseeds https://vidseeds.ai/api/mcp?toolset=core \
+  --header "Authorization: Bearer $VIDSEEDS_PAT"
+```
+
+**Cursor** (`~/.cursor/mcp.json` or `.cursor/mcp.json`):
+```json
+{
+  "mcpServers": {
+    "vidseeds": {
+      "url": "https://vidseeds.ai/api/mcp?toolset=core",
+      "headers": {
+        "Authorization": "Bearer ${env:VIDSEEDS_PAT}"
+      }
+    }
+  }
+}
+```
+
+**Codex** (`~/.codex/config.toml` or `.codex/config.toml`):
+```toml
+[mcp_servers.vidseeds]
+url = "https://vidseeds.ai/api/mcp?toolset=core"
+bearer_token_env_var = "VIDSEEDS_PAT"
+```
+
+**Claude Desktop** — add when defining the custom MCP connector:
+```
+URL: https://vidseeds.ai/api/mcp?toolset=core
+```
+
+> ⚠️ **You can always upgrade back.** If a core-only agent needs a tool not in the
+> core set (e.g. deep intelligence, precision trim, comment management), just remove
+> `?toolset=core` from the URL and reconnect. The full catalog is always available.
+
+Tools that survive the `core` toolset: projects, metadata optimization, publishing,
+thumbnails, basic analytics, channel management, translation, connections, billing,
+and referrals. Everything else (deep intelligence, competitive research, local video
+tools, admin, autoclips, bulk edit, comments, assistant workflows) is excluded.
+
+### 9b. Make your AI default to VidSeeds tools
 
 Modern Claude clients (Claude.ai, Claude Desktop, Claude Code) **defer large tool
 catalogs behind tool search**: at session start the model sees only tool names plus a
