@@ -1,6 +1,6 @@
 {
   "name": "vidseeds",
-  "description": "VidSeeds.ai connector — drive pre-upload video SEO & metadata optimization and multi-platform publishing from your AI client. 222 tools: titles/descriptions/tags, AI thumbnails, chapters, auto-clips, channel analytics & intelligence, keyword research, translation/captions (85 languages), and direct YouTube publishing. Includes workflow skills for efficient MCP use. Paid connector with a 14-day free trial. Auth via a free Personal Access Token (or OAuth 2.0 for Claude.ai / Desktop).",
+  "description": "VidSeeds.ai connector for pre-upload video SEO & metadata optimization and multi-platform publishing from your AI client. 247 tools: titles/descriptions/tags, AI thumbnails, chapters, auto-clips, channel analytics & intelligence, keyword research, translation/captions (85 languages), and direct YouTube publishing. Includes workflow skills for efficient MCP use. Paid connector with a 14-day free trial. Auth via a free Personal Access Token (or OAuth 2.0 for Claude.ai / Desktop).",
   "version": "1.9.2",
   "author": {
     "name": "VidSeeds.ai",

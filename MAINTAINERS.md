@@ -1,4 +1,4 @@
-# Maintainers — VidSeeds.ai MCP connector package
+# Maintainers - VidSeeds.ai MCP connector package
 
 This directory (`plugins/vidseeds-mcp/`) is the **source of truth** for the public marketplace repo [CarrotGamesStudios/vidseeds-mcp](https://github.com/CarrotGamesStudios/vidseeds-mcp). Mirror the whole tree to that repo on each connector release (see `docs/06-ai-integration/2026-05-24-mcp-connector-plugin-publishing.md` in the private monorepo).
 
@@ -20,13 +20,18 @@ Any change that affects external MCP users:
 3. Align **non-admin tool count** in `README.md` and plugin manifests with `bun run check:mcp-plugin-skills` (admin tools are omitted from public docs).
 4. Keep root `server.json` aligned with the hosted endpoint, auth header, repository, and connector version; republish it with `mcp-publisher` when the public registry entry needs an update.
 5. Run from monorepo root:
-   ```bash
-   bun run check:mcp-plugin-skills
-   claude plugin validate --strict plugins/vidseeds-mcp/.claude-plugin/plugin.json
-   claude plugin validate --strict plugins/vidseeds-mcp/.claude-plugin/marketplace.json
-   bunx prettier --check "plugins/vidseeds-mcp/**/*.{json,md}"
-   ```
-6. On release: rsync this directory to the public repo and push (authorized maintainers only).
+
+```bash
+bun run check:mcp-plugin-skills
+pipx run --python python3.13 --spec plugin-scanner plugin-scanner scan plugins/vidseeds-mcp --profile public-marketplace
+pipx run --python python3.13 --spec plugin-scanner plugin-scanner verify plugins/vidseeds-mcp
+claude plugin validate --strict plugins/vidseeds-mcp/.claude-plugin/plugin.json
+claude plugin validate --strict plugins/vidseeds-mcp/.claude-plugin/marketplace.json
+bunx prettier --check "plugins/vidseeds-mcp/**/*.{json,md,yml}"
+```
+
+6. Confirm the HOL registry profile has no fixable publishability or security findings after the public repo sync.
+7. On release: rsync this directory to the public repo and push (authorized maintainers only). Update the public GitHub repository description and topics when the advertised tool count or package scope changes.
 
 ## Skills content boundary
 
@@ -37,7 +42,7 @@ Skills teach **what agents can achieve** and **efficient tool composition**. The
 - Ordered chains of stable `vidseeds_*` tool names
 - User-visible errors: `AUTH_REQUIRED`, `SUBSCRIPTION_REQUIRED`, `MCP_QUOTA_EXCEEDED`, insufficient seeds
 - Latency and polling guidance (e.g. thumbnail jobs ~70–100s, poll ~3s)
-- Inputs agents need (`projectId`, `jobId`, `channelId` when multiple YouTube channels exist) — only what tool descriptions already state
+- Inputs agents need (`projectId`, `jobId`, `channelId` when multiple YouTube channels exist) - only what tool descriptions already state
 
 ### Exclude
 

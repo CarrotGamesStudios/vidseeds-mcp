@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "vidseeds",
-  "description": "Official VidSeeds.ai plugin marketplace — the VidSeeds.ai video SEO & metadata connector for Claude Code.",
+  "description": "Official VidSeeds.ai plugin marketplace for the VidSeeds.ai video SEO & metadata connector for Claude Code.",
   "owner": {
     "name": "VidSeeds.ai",
     "url": "https://vidseeds.ai"
@@ -10,7 +10,7 @@
     {
       "name": "vidseeds",
       "source": "./",
-      "description": "VidSeeds.ai connector — pre-upload video SEO/metadata optimization + multi-platform publishing (222 tools). Workflow skills for efficient MCP use. Paid connector with a 14-day free trial (starts on first connection). Auth via a free Personal Access Token from https://vidseeds.ai/settings/mcp-settings (or OAuth 2.0 for Claude.ai / Desktop custom connectors).",
+      "description": "VidSeeds.ai connector for pre-upload video SEO/metadata optimization + multi-platform publishing (247 tools). Workflow skills for efficient MCP use. Paid connector with a 14-day free trial (starts on first connection). Auth via a free Personal Access Token from https://vidseeds.ai/settings/mcp-settings (or OAuth 2.0 for Claude.ai / Desktop custom connectors).",
       "version": "1.9.2",
       "author": {
         "name": "VidSeeds.ai",
